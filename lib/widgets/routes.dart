@@ -14,6 +14,7 @@ import 'package:spbus/themes/themes.dart';
 
 import 'package:spbus/providers/routes.dart';
 import 'package:spbus/models/routes.dart';
+import 'package:spbus/widgets/loader.dart';
 
 class RoutesWidget extends StatefulWidget {
   RoutesWidget({super.key});
@@ -105,7 +106,8 @@ class _RoutesWidgetState extends State<RoutesWidget> {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 SnackBar snackBar = SnackBar(
                   content: Text(
-                      'Estás a ${delta.toStringAsFixed(2)} km de distancia de la ciudad, reemplazaremos tu ubicación real por una ubicación ficticia para que puedas usar la aplicación.'),
+                    'Estás a ${delta.toStringAsFixed(2)} km de distancia de la ciudad, reemplazaremos tu ubicación real por una ubicación ficticia para que puedas usar la aplicación.'
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               });
@@ -134,6 +136,8 @@ class _RoutesWidgetState extends State<RoutesWidget> {
               if (position != null) MarkerLayer(
                 markers: [
                   Marker(
+                    width: 16,
+                    height: 16,
                     point: LatLng(
                       position.latitude,
                       position.longitude,
@@ -227,11 +231,7 @@ class _RoutesWidgetState extends State<RoutesWidget> {
         } else if (snapshot.hasError) {
           return const Text('Error');
         }
-        return const Center(
-          child: CircularProgressIndicator.adaptive(
-            valueColor: AlwaysStoppedAnimation<Color>(greenTheme),
-          ),
-        );
+        return const Loader();
       },
     );
   }

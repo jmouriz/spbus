@@ -13,6 +13,7 @@ import 'package:spbus/themes/themes.dart';
 
 import 'package:spbus/providers/locations.dart';
 import 'package:spbus/models/locations.dart';
+import 'package:spbus/widgets/loader.dart';
 
 class LocationsWidget extends StatefulWidget {
   LocationsWidget({ super.key });
@@ -119,6 +120,8 @@ class _LocationsWidgetState extends State<LocationsWidget> {
               MarkerLayer(
                 markers: [
                   for (int index = 0; index < locations.count(); index++) Marker(
+                    width: 16,
+                    height: 16,
                     point: LatLng(
                       locations.location(index).latitude,
                       locations.location(index).longitude,
@@ -126,6 +129,8 @@ class _LocationsWidgetState extends State<LocationsWidget> {
                     builder: (context) => const BusIcon(),
                   ),
                   if (position != null) Marker(
+                    width: 16,
+                    height: 16,
                     point: LatLng(
                       position.latitude,
                       position.longitude,
@@ -150,11 +155,7 @@ class _LocationsWidgetState extends State<LocationsWidget> {
         } else if (snapshot.hasError) {
           return const Text('Error');
         }
-        return const Center(
-          child: CircularProgressIndicator.adaptive(
-            valueColor: AlwaysStoppedAnimation<Color>(greenTheme),
-          ),
-        );
+        return const Loader();
       },
     );
   }

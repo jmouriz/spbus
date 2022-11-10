@@ -6,8 +6,8 @@ class BusIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container( 
-      height: 32,
-      width: 32,
+      height: 24,
+      width: 24,
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.circular(16) 
@@ -15,7 +15,7 @@ class BusIcon extends StatelessWidget {
       child: const Icon(
         Icons.directions_bus,
         color: Colors.white,
-        size: 20,
+        size: 12,
       ),
     );
   }

@@ -22,7 +22,9 @@ class _MapWidgetState extends State<MapWidget> {
 
   void update() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
   }
 
